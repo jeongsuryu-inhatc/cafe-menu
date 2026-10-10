@@ -1,0 +1,26 @@
+<%- include('header', { category, categories, activeCategory: 'tea' }) %>
+
+<main id="top">
+  <section class="category-hero">
+    <p class="eyebrow">02 / <%= category.label.toUpperCase() %></p>
+    <h1>느긋하게 즐기는<br /><em>향긋한 티.</em></h1>
+    <p class="hero-description"><%= category.description %></p>
+  </section>
+
+  <section class="menu-sections category-menu">
+    <div class="section-heading">
+      <div><p class="section-number">02</p><h2><%= category.title %> <span><%= category.label %></span></h2></div>
+      <p class="section-description">마음이 편안해지는 향긋한 티를 만나보세요.</p>
+    </div>
+    <div class="menu-grid">
+      <% category.items.forEach((item) => { %>
+        <article class="menu-card">
+          <div class="card-image-wrap"><img class="card-image" src="<%= item.image %>" alt="<%= item.name %>" loading="lazy" /><% if (item.tag) { %><span class="card-tag"><%= item.tag %></span><% } %></div>
+          <div class="card-content"><div class="card-title-row"><div><h3><%= item.name %></h3><p><%= item.english %></p></div><strong><%= item.price.toLocaleString('ko-KR') %><small>원</small></strong></div><p class="card-description"><%= item.description %></p></div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include('footer') %>

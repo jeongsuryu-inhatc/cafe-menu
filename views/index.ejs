@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="매일의 순간을 위한 따뜻한 커피와 디저트, MELLOW 카페 메뉴" />
+    <title>MELLOW — Cafe Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MELLOW 홈">
+        <span class="brand-mark">M</span>
+        <span>MELLOW<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="메뉴 카테고리">
+        <% categories.forEach((category, index) => { %>
+          <a class="nav-link <%= index === 0 ? 'is-active' : '' %>" href="/<%= category.id %>"><%= category.title %></a>
+        <% }) %>
+      </nav>
+      <a class="find-us" href="#visit">Find us <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE PAUSE IN YOUR DAY</p>
+          <h1>좋은 하루는<br /><em>좋은 한 잔</em>에서.</h1>
+          <p class="hero-description">천천히 볶고, 정성껏 굽고, 다정하게 내립니다.<br />MELLOW에서 오늘의 작은 쉼표를 만나보세요.</p>
+          <a class="scroll-cue" href="/coffee"><span class="scroll-icon">↓</span> Explore our menu</a>
+        </div>
+        <div class="hero-art" aria-label="커피와 디저트 이미지">
+          <div class="hero-circle"></div>
+          <img src="/images/hero-coffee.jpg" alt="따뜻한 커피와 디저트" />
+          <div class="hero-stamp">SLOW<br />DOWN<br /><span>✦</span></div>
+          <div class="hero-caption">handcrafted daily<br /><span>since 2018</span></div>
+        </div>
+      </section>
+
+      <section class="menu-intro">
+        <p class="eyebrow">OUR MENU</p>
+        <h2>마음이 머무는 맛</h2>
+        <p>하나하나 좋은 재료를 고르고, 가장 맛있는 순간에 담아냅니다.</p>
+      </section>
+
+      <div class="menu-sections">
+        <% categories.forEach((category) => { %>
+          <section class="menu-section" id="<%= category.id %>">
+            <div class="section-heading">
+              <div>
+                <p class="section-number">0<%= categories.indexOf(category) + 1 %></p>
+                <h2><%= category.title %> <span><%= category.label %></span></h2>
+              </div>
+              <p class="section-description"><%= category.description %></p>
+            </div>
+            <div class="menu-grid">
+              <% category.items.forEach((item) => { %>
+                <article class="menu-card">
+                  <div class="card-image-wrap">
+                    <img class="card-image" src="<%= item.image %>" alt="<%= item.name %>" loading="lazy" />
+                    <% if (item.tag) { %><span class="card-tag"><%= item.tag %></span><% } %>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-title-row">
+                      <div><h3><%= item.name %></h3><p><%= item.english %></p></div>
+                      <strong><%= item.price.toLocaleString('ko-KR') %><small>원</small></strong>
+                    </div>
+                    <p class="card-description"><%= item.description %></p>
+                  </div>
+                </article>
+              <% }) %>
+            </div>
+          </section>
+        <% }) %>
+      </div>
+    </main>
+
+    <footer class="site-footer" id="visit">
+      <div class="footer-brand"><span class="brand-mark">M</span><span>MELLOW.</span></div>
+      <div class="footer-info"><p>인하공업전문대</p><p>매일 09:00 — 21:00</p></div>
+      <div class="footer-social"><a href="#top">Instagram ↗</a><a href="#top">Contact ↗</a></div>
+    </footer>
+  </body>
+</html>

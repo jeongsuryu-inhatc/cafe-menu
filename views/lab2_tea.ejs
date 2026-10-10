@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 2 - Tea Menu</title>
+  </head>
+  <body>
+    <h1>티 메뉴</h1>
+
+    <% tea_items.forEach((item) => { %>
+      <article>
+        <h2><%= item.name %></h2>
+        <p><strong>영문명:</strong> <%= item.english %></p>
+        <p><strong>설명:</strong> <%= item.description %></p>
+        <p><strong>가격:</strong> <%= item.price.toLocaleString('ko-KR') %>원</p>
+        <% if (item.tag) { %>
+          <p><strong>태그:</strong> <%= item.tag %></p>
+        <% } %>
+        <p><img src="<%= item.image %>" alt="<%= item.name %>" width="240" /></p>
+        <hr />
+      </article>
+    <% }) %>
+  </body>
+</html>
